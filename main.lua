@@ -1,6 +1,8 @@
 function love.load()
     
-    love.graphics.setDefaultFilter("nearest", "nearest") -- Set the default filter to nearest for pixel art 
+    love.graphics.setDefaultFilter("nearest", "nearest") -- Set the default filter to nearest for pixel art
+
+    gravity = 500
 
     pipe = {}
     pipe.image = love.graphics.newImage("sprites/pipe.png") -- Load the pipe image
@@ -9,13 +11,21 @@ function love.load()
     pipe.y = 400
 
     player = {}
-    player.x = 100
+    player.x = 200
     player.y = love.graphics.getHeight()/2
 
 end
 
 
+function love.keypressed(key)
+    if love.keyboard.isDown("space") then
+        player.y = player.y + 150
+    end
+end
+
+
 function love.update(dt)
+    player.y = player.y - gravity * dt
 
 end
 
